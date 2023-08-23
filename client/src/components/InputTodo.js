@@ -7,11 +7,16 @@ const InputTodo = () => {
     e.preventDefault();
     try {
       const body = { description };
-      const response = await axios("http://localhost:5000/todos", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
+      const response = await axios.post(
+        "http://localhost:5000/todos",
+        JSON.stringify(body),
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          // body: JSON.stringify(body),
+        }
+      );
       //   console.log(response);
       window.location = "/";
     } catch (err) {
