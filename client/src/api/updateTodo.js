@@ -4,7 +4,7 @@ import axios from "axios";
 const updateTodo = async (todoId, body) => {
   try {
     const response = await axios.put(
-      `http://localhost:5000/todos/${todoId}`,
+      `http://localhost:5000/api/todos/${todoId}`,
       body,
       {
         headers: {
