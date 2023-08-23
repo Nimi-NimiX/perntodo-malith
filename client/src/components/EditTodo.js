@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
+import axios from "axios";
 
 const EditTodo = ({ todo }) => {
   //   console.log(todo);
@@ -8,7 +9,7 @@ const EditTodo = ({ todo }) => {
     e.preventDefault();
     try {
       const body = { description };
-      const response = await fetch(
+      const response = await axios(
         `http://localhost:5000/todos/${todo.todo_id}`,
         {
           method: "PUT",
