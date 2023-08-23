@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import EditTodo from "../edit-todo/EditTodo";
 import axios from "axios";
 import deleteTodo from "../../api/deleteTodo";
+import getTodos from "../../api/getTodos";
 
 const ListTodos = () => {
   const [todos, setTodos] = useState([]);
@@ -15,20 +16,16 @@ const ListTodos = () => {
       console.error(err.message);
     }
   };
-  const getTodos = async () => {
+  const getAllTodos = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/todos");
-      // const jsonData = await response.json();
-
-      // Access data directly from response
-      const jsonData = response.data;
-      setTodos(jsonData);
+      const todoList = await getTodos();
+      setTodos(todoList);
     } catch (err) {
       console.error(err.message);
     }
   };
   useEffect(() => {
-    getTodos();
+    getAllTodos();
   }, []);
   console.log(todos);
 
@@ -43,12 +40,6 @@ const ListTodos = () => {
           </tr>
         </thead>
         <tbody>
-          {/* <tr>
-            <td>John</td>
-            <td>Doe</td>
-            <td>john@example.com</td>
-          </tr>
-          */}
           {todos.map((todo) => {
             return (
               <tr key={todo.todo_id}>
