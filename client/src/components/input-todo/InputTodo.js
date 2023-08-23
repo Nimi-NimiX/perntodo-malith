@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from "react";
-import axios from "axios";
+
+import addTodo from "../../api/addTodo";
 //function
 const InputTodo = () => {
   const [description, setdescription] = useState("");
@@ -7,16 +8,7 @@ const InputTodo = () => {
     e.preventDefault();
     try {
       const body = { description };
-      const response = await axios.post(
-        "http://localhost:5000/todos",
-        JSON.stringify(body),
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          // body: JSON.stringify(body),
-        }
-      );
+      const response = await addTodo(body);
       //   console.log(response);
       window.location = "/";
     } catch (err) {
