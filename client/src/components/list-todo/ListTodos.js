@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
 import EditTodo from "../edit-todo/EditTodo";
-import axios from "axios";
 import deleteTodo from "../../api/deleteTodo";
 import getTodos from "../../api/getTodos";
 

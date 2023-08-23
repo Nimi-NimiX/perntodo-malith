@@ -1,5 +1,4 @@
 import React, { Fragment, useState } from "react";
-
 import addTodo from "../../api/addTodo";
 //function
 const InputTodo = () => {
