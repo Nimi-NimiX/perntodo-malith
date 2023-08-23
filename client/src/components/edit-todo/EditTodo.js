@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-import axios from "axios";
+
 import updateTodo from "../../api/updateTodo";
 
 const EditTodo = ({ todo }) => {
