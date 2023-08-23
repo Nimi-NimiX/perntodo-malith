@@ -1,14 +1,16 @@
 import React, { Fragment, useState } from "react";
 import addTodo from "../../api/addTodo";
-//function
+
 const InputTodo = () => {
   const [description, setdescription] = useState("");
+
+  //handle the form submission
   const onSubmitForm = async (e) => {
     e.preventDefault();
     try {
       const body = { description };
       const response = await addTodo(body);
-      //   console.log(response);
+
       window.location = "/";
     } catch (err) {
       console.error(err.message);

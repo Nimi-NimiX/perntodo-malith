@@ -6,7 +6,7 @@ import getTodos from "../../api/getTodos";
 const ListTodos = () => {
   const [todos, setTodos] = useState([]);
 
-  //delete function
+  //delete todo
   const delTodo = async (id) => {
     try {
       const deletedTodo = await deleteTodo(id);
@@ -15,6 +15,8 @@ const ListTodos = () => {
       console.error(err.message);
     }
   };
+
+  //get all the  todos
   const getAllTodos = async () => {
     try {
       const todoList = await getTodos();
@@ -23,6 +25,7 @@ const ListTodos = () => {
       console.error(err.message);
     }
   };
+
   useEffect(() => {
     getAllTodos();
   }, []);

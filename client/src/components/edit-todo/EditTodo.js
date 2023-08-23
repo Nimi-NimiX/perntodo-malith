@@ -2,9 +2,9 @@ import React, { Fragment, useEffect, useState } from "react";
 import updateTodo from "../../api/updateTodo";
 
 const EditTodo = ({ todo }) => {
-  //   console.log(todo);
   const [description, setDescription] = useState(todo.description);
-  //edit description
+
+  //update the description
   const updateDesription = async (e) => {
     e.preventDefault();
     try {
