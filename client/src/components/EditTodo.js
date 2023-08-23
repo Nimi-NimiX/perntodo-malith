@@ -9,12 +9,13 @@ const EditTodo = ({ todo }) => {
     e.preventDefault();
     try {
       const body = { description };
-      const response = await axios(
+      const response = await axios.put(
         `http://localhost:5000/todos/${todo.todo_id}`,
+        body,
         {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body),
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
       );
       window.location = "./";
