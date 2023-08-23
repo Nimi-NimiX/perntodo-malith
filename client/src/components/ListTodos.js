@@ -19,8 +19,11 @@ const ListTodos = () => {
   };
   const getTodos = async () => {
     try {
-      const response = await axios("http://localhost:5000/todos");
-      const jsonData = await response.json();
+      const response = await axios.get("http://localhost:5000/todos");
+      // const jsonData = await response.json();
+
+      // Access data directly from response
+      const jsonData = response.data;
       setTodos(jsonData);
     } catch (err) {
       console.error(err.message);
