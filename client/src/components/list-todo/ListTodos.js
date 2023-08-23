@@ -1,17 +1,15 @@
 import React, { Fragment, useEffect, useState } from "react";
 import EditTodo from "../edit-todo/EditTodo";
 import axios from "axios";
+import deleteTodo from "../../api/deleteTodo";
 
 const ListTodos = () => {
   const [todos, setTodos] = useState([]);
 
   //delete function
-  const deleteTodo = async (id) => {
+  const delTodo = async (id) => {
     try {
-      const deleteTodo = await axios.delete(
-        `http://localhost:5000/todos/${id}`
-      );
-      console.log(deleteTodo);
+      const deletedTodo = await deleteTodo(id);
       setTodos(todos.filter((todo) => todo.todo_id !== id));
     } catch (err) {
       console.error(err.message);
@@ -61,7 +59,7 @@ const ListTodos = () => {
                 <td>
                   <button
                     className="btn btn-danger"
-                    onClick={() => deleteTodo(todo.todo_id)}
+                    onClick={() => delTodo(todo.todo_id)}
                   >
                     Delete
                   </button>
