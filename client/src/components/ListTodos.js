@@ -3,13 +3,14 @@ import EditTodo from "./EditTodo";
 import axios from "axios";
 
 const ListTodos = () => {
-  const BASE_URL = process.env.REACT_APP_BASE_URL;
   const [todos, setTodos] = useState([]);
 
   //delete function
   const deleteTodo = async (id) => {
     try {
-      const deleteTodo = await axios.delete(`${BASE_URL}/todos/${id}`);
+      const deleteTodo = await axios.delete(
+        `http://localhost:5000/todos/${id}`
+      );
       console.log(deleteTodo);
       setTodos(todos.filter((todo) => todo.todo_id !== id));
     } catch (err) {
@@ -18,7 +19,7 @@ const ListTodos = () => {
   };
   const getTodos = async () => {
     try {
-      const response = await axios.get(`${BASE_URL}/todos`);
+      const response = await axios.get(`http://localhost:5000/todos`);
 
       const jsonData = response.data;
       setTodos(jsonData);

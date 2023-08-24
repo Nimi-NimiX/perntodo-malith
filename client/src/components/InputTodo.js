@@ -3,14 +3,13 @@ import axios from "axios";
 
 //function
 const InputTodo = () => {
-  const BASE_URL = process.env.REACT_APP_BASE_URL;
   const [description, setdescription] = useState("");
   const onSubmitForm = async (e) => {
     e.preventDefault();
     try {
       const body = { description };
       const response = await axios.post(
-        `${BASE_URL}/todos`,
+        `http://localhost:5000/todos`,
         JSON.stringify(body),
         {
           headers: {

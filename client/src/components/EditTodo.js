@@ -1,8 +1,9 @@
 import React, { Fragment, useEffect, useState } from "react";
 import axios from "axios";
+// const BASE_URL = process.env.REACT_APP_BASE_URL;
+//REACT_APP_BASE_URL="http://localhost:5000"
 
 const EditTodo = ({ todo }) => {
-  const BASE_URL = process.env.REACT_APP_BASE_URL;
   const [description, setDescription] = useState(todo.description);
 
   //update description
@@ -11,7 +12,7 @@ const EditTodo = ({ todo }) => {
     try {
       const body = { description };
       const response = await axios.put(
-        `${BASE_URL}/todos/${todo.todo_id}`,
+        `http://localhost:5000/todos/${todo.todo_id}`,
         body,
         {
           headers: {
