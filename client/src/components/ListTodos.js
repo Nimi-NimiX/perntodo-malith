@@ -55,11 +55,11 @@ const ListTodos = () => {
               key={todo.todo_id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <TableCell align="right">{todo.description}</TableCell>
-              <TableCell align="right">
+              <TableCell align="center">{todo.description}</TableCell>
+              <TableCell align="center">
                 <EditTodo todo={todo} />
               </TableCell>
-              <TableCell align="right">
+              <TableCell align="center">
                 <Button
                   variant="outlined"
                   color="warning"
