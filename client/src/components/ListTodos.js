@@ -1,13 +1,15 @@
 import React, { Fragment, useEffect, useState } from "react";
 import EditTodo from "./EditTodo";
+
 import {
   Table,
   TableBody,
   TableCell,
-  TableContainer,
-  TableHead,
   TableRow,
   Button,
+  TableHead,
+  TableContainer,
+  Paper,
 } from "@mui/material";
 
 const ListTodos = () => {
@@ -41,37 +43,39 @@ const ListTodos = () => {
 
   return (
     <Fragment>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell align="center">Description</TableCell>
-            <TableCell align="center">Edit</TableCell>
-            <TableCell align="center">Delete</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {todos.map((todo) => (
-            <TableRow
-              key={todo.todo_id}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              <TableCell align="center">{todo.description}</TableCell>
-              <TableCell align="center">
-                <EditTodo todo={todo} />
-              </TableCell>
-              <TableCell align="center">
-                <Button
-                  variant="outlined"
-                  color="warning"
-                  onClick={() => deleteTodo(todo.todo_id)}
-                >
-                  Delete
-                </Button>
-              </TableCell>
+      <TableContainer component={Paper} sx={{ marginTop: 5 }}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell align="center">Description</TableCell>
+              <TableCell align="center">Edit</TableCell>
+              <TableCell align="center">Delete</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHead>
+          <TableBody>
+            {todos.map((todo) => (
+              <TableRow
+                key={todo.todo_id}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell align="center">{todo.description}</TableCell>
+                <TableCell align="center">
+                  <EditTodo todo={todo} />
+                </TableCell>
+                <TableCell align="center">
+                  <Button
+                    variant="outlined"
+                    color="warning"
+                    onClick={() => deleteTodo(todo.todo_id)}
+                  >
+                    Delete
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </Fragment>
   );
 };
