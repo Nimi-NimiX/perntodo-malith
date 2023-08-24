@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import EditTodo from "./EditTodo";
+import axios from "axios";
 
 const ListTodos = () => {
   const [todos, setTodos] = useState([]);
@@ -7,9 +8,9 @@ const ListTodos = () => {
   //delete function
   const deleteTodo = async (id) => {
     try {
-      const deleteTodo = await fetch(`http://localhost:5000/todos/${id}`, {
-        method: "DELETE",
-      });
+      const deleteTodo = await axios.delete(
+        `http://localhost:5000/todos/${id}`
+      );
       console.log(deleteTodo);
       setTodos(todos.filter((todo) => todo.todo_id !== id));
     } catch (err) {
@@ -18,8 +19,9 @@ const ListTodos = () => {
   };
   const getTodos = async () => {
     try {
-      const response = await fetch("http://localhost:5000/todos");
-      const jsonData = await response.json();
+      const response = await axios.get(`http://localhost:5000/todos`);
+
+      const jsonData = response.data;
       setTodos(jsonData);
     } catch (err) {
       console.error(err.message);

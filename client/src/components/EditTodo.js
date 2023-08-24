@@ -1,22 +1,26 @@
 import React, { Fragment, useEffect, useState } from "react";
+import axios from "axios";
+// const BASE_URL = process.env.REACT_APP_BASE_URL;
+//REACT_APP_BASE_URL="http://localhost:5000"
 
 const EditTodo = ({ todo }) => {
-  //   console.log(todo);
   const [description, setDescription] = useState(todo.description);
-  //edit description
+
+  //update description
   const updateDesription = async (e) => {
     e.preventDefault();
     try {
       const body = { description };
-      const response = await fetch(
+      const response = await axios.put(
         `http://localhost:5000/todos/${todo.todo_id}`,
+        body,
         {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body),
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
       );
-      window.location = "./";
+    
     } catch (err) {
       console.error(err.message);
     }
