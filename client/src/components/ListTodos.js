@@ -1,5 +1,14 @@
 import React, { Fragment, useEffect, useState } from "react";
 import EditTodo from "./EditTodo";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Button,
+} from "@mui/material";
 
 const ListTodos = () => {
   const [todos, setTodos] = useState([]);
@@ -10,7 +19,7 @@ const ListTodos = () => {
       const deleteTodo = await fetch(`http://localhost:5000/todos/${id}`, {
         method: "DELETE",
       });
-      console.log(deleteTodo);
+
       setTodos(todos.filter((todo) => todo.todo_id !== id));
     } catch (err) {
       console.error(err.message);
@@ -32,41 +41,37 @@ const ListTodos = () => {
 
   return (
     <Fragment>
-      <table className="table mt-5 text-center">
-        <thead>
-          <tr>
-            <th>Description</th>
-            <th>Edit</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          {/* <tr>
-            <td>John</td>
-            <td>Doe</td>
-            <td>john@example.com</td>
-          </tr>
-          */}
-          {todos.map((todo) => {
-            return (
-              <tr key={todo.todo_id}>
-                <td>{todo.description}</td>
-                <td>
-                  <EditTodo todo={todo} />
-                </td>
-                <td>
-                  <button
-                    className="btn btn-danger"
-                    onClick={() => deleteTodo(todo.todo_id)}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell align="center">Description</TableCell>
+            <TableCell align="center">Edit</TableCell>
+            <TableCell align="center">Delete</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {todos.map((todo) => (
+            <TableRow
+              key={todo.todo_id}
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+            >
+              <TableCell align="right">{todo.description}</TableCell>
+              <TableCell align="right">
+                <EditTodo todo={todo} />
+              </TableCell>
+              <TableCell align="right">
+                <Button
+                  variant="outlined"
+                  color="warning"
+                  onClick={() => deleteTodo(todo.todo_id)}
+                >
+                  Delete
+                </Button>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
     </Fragment>
   );
 };
