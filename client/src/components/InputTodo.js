@@ -1,5 +1,7 @@
 import React, { Fragment, useState } from "react";
 import axios from "axios";
+const apiUrl = process.env.TODO_APP_API_URL;
+
 //function
 const InputTodo = () => {
   const [description, setdescription] = useState("");
@@ -8,7 +10,7 @@ const InputTodo = () => {
     try {
       const body = { description };
       const response = await axios.post(
-        "http://localhost:5000/todos",
+        `${apiUrl}/todos`,
         JSON.stringify(body),
         {
           headers: {

@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import axios from "axios";
+const apiUrl = process.env.TODO_APP_API_URL;
 
 const EditTodo = ({ todo }) => {
   //   console.log(todo);
@@ -10,7 +11,7 @@ const EditTodo = ({ todo }) => {
     try {
       const body = { description };
       const response = await axios.put(
-        `http://localhost:5000/todos/${todo.todo_id}`,
+        `${apiUrl}/todos/${todo.todo_id}`,
         body,
         {
           headers: {
