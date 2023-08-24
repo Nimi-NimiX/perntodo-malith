@@ -1,25 +1,24 @@
 import React, { Fragment, useState } from "react";
 import axios from "axios";
-const apiUrl = process.env.TODO_APP_API_URL;
 
 //function
 const InputTodo = () => {
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
   const [description, setdescription] = useState("");
   const onSubmitForm = async (e) => {
     e.preventDefault();
     try {
       const body = { description };
       const response = await axios.post(
-        `${apiUrl}/todos`,
+        `${BASE_URL}/todos`,
         JSON.stringify(body),
         {
           headers: {
             "Content-Type": "application/json",
           },
-          // body: JSON.stringify(body),
         }
       );
-      //   console.log(response);
+
       window.location = "/";
     } catch (err) {
       console.error(err.message);

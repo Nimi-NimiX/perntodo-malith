@@ -1,17 +1,17 @@
 import React, { Fragment, useEffect, useState } from "react";
 import axios from "axios";
-const apiUrl = process.env.TODO_APP_API_URL;
 
 const EditTodo = ({ todo }) => {
-  //   console.log(todo);
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
   const [description, setDescription] = useState(todo.description);
-  //edit description
+
+  //update description
   const updateDesription = async (e) => {
     e.preventDefault();
     try {
       const body = { description };
       const response = await axios.put(
-        `${apiUrl}/todos/${todo.todo_id}`,
+        `${BASE_URL}/todos/${todo.todo_id}`,
         body,
         {
           headers: {

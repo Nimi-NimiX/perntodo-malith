@@ -1,15 +1,15 @@
 import React, { Fragment, useEffect, useState } from "react";
 import EditTodo from "./EditTodo";
 import axios from "axios";
-const apiUrl = process.env.TODO_APP_API_URL;
 
 const ListTodos = () => {
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
   const [todos, setTodos] = useState([]);
 
   //delete function
   const deleteTodo = async (id) => {
     try {
-      const deleteTodo = await axios.delete(`${apiUrl}/todos/${id}`);
+      const deleteTodo = await axios.delete(`${BASE_URL}/todos/${id}`);
       console.log(deleteTodo);
       setTodos(todos.filter((todo) => todo.todo_id !== id));
     } catch (err) {
@@ -18,10 +18,8 @@ const ListTodos = () => {
   };
   const getTodos = async () => {
     try {
-      const response = await axios.get(`${apiUrl}/todos`);
-      // const jsonData = await response.json();
+      const response = await axios.get(`${BASE_URL}/todos`);
 
-      // Access data directly from response
       const jsonData = response.data;
       setTodos(jsonData);
     } catch (err) {
