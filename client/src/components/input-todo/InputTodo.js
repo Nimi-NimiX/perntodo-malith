@@ -10,8 +10,6 @@ const InputTodo = () => {
     try {
       const body = { description };
       const response = await addTodo(body);
-
-      window.location = "/";
     } catch (err) {
       console.error(err.message);
     }

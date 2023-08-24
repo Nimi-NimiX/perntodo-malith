@@ -10,7 +10,6 @@ const EditTodo = ({ todo }) => {
     try {
       const body = { description };
       const response = await updateTodo(todo.todo_id, body);
-      window.location = "./";
     } catch (err) {
       console.error(err.message);
     }
