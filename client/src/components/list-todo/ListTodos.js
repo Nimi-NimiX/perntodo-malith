@@ -1,32 +1,33 @@
 import React, { Fragment, useEffect, useState } from "react";
-import EditTodo from "./EditTodo";
+import EditTodo from "../edit-todo/EditTodo";
+import deleteTodo from "../../api/deleteTodo";
+import getTodos from "../../api/getTodos";
 
 const ListTodos = () => {
   const [todos, setTodos] = useState([]);
 
-  //delete function
-  const deleteTodo = async (id) => {
+  //delete todo
+  const delTodo = async (id) => {
     try {
-      const deleteTodo = await fetch(`http://localhost:5000/todos/${id}`, {
-        method: "DELETE",
-      });
-      console.log(deleteTodo);
+      const deletedTodo = await deleteTodo(id);
       setTodos(todos.filter((todo) => todo.todo_id !== id));
     } catch (err) {
       console.error(err.message);
     }
   };
-  const getTodos = async () => {
+
+  //get all the  todos
+  const getAllTodos = async () => {
     try {
-      const response = await fetch("http://localhost:5000/todos");
-      const jsonData = await response.json();
-      setTodos(jsonData);
+      const todoList = await getTodos();
+      setTodos(todoList);
     } catch (err) {
       console.error(err.message);
     }
   };
+
   useEffect(() => {
-    getTodos();
+    getAllTodos();
   }, []);
   console.log(todos);
 
@@ -41,12 +42,6 @@ const ListTodos = () => {
           </tr>
         </thead>
         <tbody>
-          {/* <tr>
-            <td>John</td>
-            <td>Doe</td>
-            <td>john@example.com</td>
-          </tr>
-          */}
           {todos.map((todo) => {
             return (
               <tr key={todo.todo_id}>
@@ -57,7 +52,7 @@ const ListTodos = () => {
                 <td>
                   <button
                     className="btn btn-danger"
-                    onClick={() => deleteTodo(todo.todo_id)}
+                    onClick={() => delTodo(todo.todo_id)}
                   >
                     Delete
                   </button>

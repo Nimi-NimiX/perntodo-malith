@@ -1,22 +1,15 @@
 import React, { Fragment, useEffect, useState } from "react";
+import updateTodo from "../../api/updateTodo";
 
 const EditTodo = ({ todo }) => {
-  //   console.log(todo);
   const [description, setDescription] = useState(todo.description);
-  //edit description
+
+  //update the description
   const updateDesription = async (e) => {
     e.preventDefault();
     try {
       const body = { description };
-      const response = await fetch(
-        `http://localhost:5000/todos/${todo.todo_id}`,
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body),
-        }
-      );
-      window.location = "./";
+      const response = await updateTodo(todo.todo_id, body);
     } catch (err) {
       console.error(err.message);
     }

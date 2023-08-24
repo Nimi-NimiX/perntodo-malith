@@ -1,18 +1,15 @@
 import React, { Fragment, useState } from "react";
-//function
+import addTodo from "../../api/addTodo";
+
 const InputTodo = () => {
   const [description, setdescription] = useState("");
+
+  //handle the form submission
   const onSubmitForm = async (e) => {
     e.preventDefault();
     try {
       const body = { description };
-      const response = await fetch("http://localhost:5000/todos", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
-      //   console.log(response);
-      window.location = "/";
+      const response = await addTodo(body);
     } catch (err) {
       console.error(err.message);
     }
