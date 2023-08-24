@@ -1,4 +1,7 @@
 import React, { Fragment, useState } from "react";
+import Typography from "@mui/material/Typography";
+import { Box, TextField, Stack, Button } from "@mui/material";
+
 //function
 const InputTodo = () => {
   const [description, setdescription] = useState("");
@@ -11,7 +14,7 @@ const InputTodo = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
-     
+
       window.location = "/";
     } catch (err) {
       console.error(err.message);
@@ -19,17 +22,28 @@ const InputTodo = () => {
   };
   return (
     <Fragment>
-      <h1 className="text-center mt-5">Pern Todo List</h1>
+      <Box sx={{ width: "100%", maxWidth: 500 }}>
+        <Typography variant="h5" gutterBottom sx={{ textAlign: "center" }}>
+          Pern Todo List
+        </Typography>
+      </Box>
       <form className="d-flex mt-5" onSubmit={onSubmitForm}>
-        <input
+        <TextField
           type="text"
           className="form-control"
           value={description}
           onChange={(event) => {
             setdescription(event.target.value);
           }}
-        ></input>
-        <button className="btn btn-success ml-5">Add</button>
+        ></TextField>
+        <Button
+          variant="contained"
+          color="success"
+          type="submit"
+          sx={{ marginLeft: 3 }}
+        >
+          Add
+        </Button>
       </form>
     </Fragment>
   );
