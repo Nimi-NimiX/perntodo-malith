@@ -1,10 +1,11 @@
 import React from "react";
 import axios from "axios";
+const BASE_URL = process.env.REACT_APP_TODO_BASE_URL;
 
 const addTodo = async (description) => {
   try {
     const response = await axios.post(
-      "http://localhost:5000/api/todos",
+      `${BASE_URL}/todos`,
       JSON.stringify(description),
       {
         headers: {
